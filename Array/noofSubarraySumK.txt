@@ -1,0 +1,17 @@
+// find the no of subarray divisible by k
+
+def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        return sum(r * (r-1) // 2 for _, r in Counter(map(lambda x: x % k, 		accumulate([0] + nums))).items())
+
+
+from itertools import accumulate
+nums = [1, 2, 3, 4, 5]
+k = 5
+print(list(accumulate([0]+nums)))
+print(list(map(lambda x: x % k, accumulate([0]+nums))))
+print([r * (r-1) // 2 for _, r in Counter(map(lambda x: x % k, accumulate([0] + nums))).items()])
+
+----output
+[0, 1, 3, 6, 10, 15]
+[0, 1, 3, 1, 0, 0]
+[3, 2, 1]
